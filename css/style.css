@@ -1,0 +1,25 @@
+body {
+	background-color: #49B269;
+	color: #222222;
+}
+
+/*49B269  9CFFBA  82FFA8  B23938  FF8382*/
+
+#quizContainer, #newQuizContainer {
+	background-color: #82FFA8;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+	border-bottom: 10px solid #B23938;
+	height: 300px
+}
+
+form {
+	font-size: 20px;
+}
+
+input[type=submit] {
+	margin-top: 20px;
+	font-size: 20px;
+}

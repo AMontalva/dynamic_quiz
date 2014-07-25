@@ -6,6 +6,7 @@ var quizArray = [
 ];
 var total = 0;
 var current = 0;
+var radioArray = [];
 
 function makeHeading() {
 	//create the elements
@@ -34,7 +35,6 @@ function makeRadioButtons() {
 	document.getElementById("quizContainer").insertBefore(form, quizContainer.childNodes[2]);
 	form.setAttribute("id", "form");
 	form.setAttribute("method","post");				
-	var radioArray = [];
 	for(i = 0; i < quizArray[current].choices.length; i++) {
 		// radio buttons
 		radioArray[i] = document.createElement("input")
@@ -54,19 +54,48 @@ function makeRadioButtons() {
 		// document.getElementById("form").appendChild(br);				
 		document.getElementById("form").appendChild(br);
 		// add click event to radio buttons
-		(function(radioArray, i) {
-			radioArray[i].addEventListener("click", function() {
-				if(radioArray[i].value === quizArray[current].correctAnswer) {
-					console.log("Correct " + radioArray[i].value);
-					total++;
-					console.log("TOTAL " + total);							
-				}
-				else {
-					console.log("Incorrect " + radioArray[i].value);
-				}
-			});		
-		})(radioArray, i);
+		// (function(radioArray, i) {
+		// 	radioArray[i].addEventListener("click", function() {
+		// 		if(radioArray[i].value === quizArray[current].correctAnswer) {
+		// 			console.log("Correct " + radioArray[i].value);
+		// 			total++;
+		// 			console.log("TOTAL " + total);							
+		// 		}
+		// 		else {
+		// 			console.log("Incorrect " + radioArray[i].value);
+		// 		}
+		// 	});		
+		// })(radioArray, i);
 	};
+};
+
+// if (document.getElementById('r1').checked) {
+//   rate_value = document.getElementById('r1').value;
+// }
+
+function sumTotal() {
+	for(i=0; i<radioArray.length; i++) {
+		if(radioArray[i].checked) {
+			if(radioArray[i].value === quizArray[current].correctAnswer) {
+				console.log(radioArray[i].value);
+				total++;
+			}
+			else {
+				console.log("Wrong");
+			}
+		}
+	}; 
+	// for(i=0; i<radioArray.length; i++) {
+	// 	if(radioArray[i].checked === quizArray[current].correctAnswer) {
+
+	// 		console.log("Correct " + radioArray[i].value);
+	// 		total++;
+	// 		console.log("TOTAL " + total);							
+	// 	}
+	// 	else {
+	// 		console.log("Incorrect " + radioArray[i].value);
+	// 	}
+	// };
 };
 
 function makeSubmitButton() {
@@ -78,6 +107,7 @@ function makeSubmitButton() {
 	// add click event to submit button
 	submitButton.addEventListener("click", function() {
 		if(current < quizArray.length - 1) {
+			sumTotal();
 			var str = document.getElementById("quizQuestion").innerHTML;
 			str = quizArray[++current].question;
 			document.getElementById("quizQuestion").innerHTML = str;

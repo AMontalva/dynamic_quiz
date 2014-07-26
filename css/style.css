@@ -17,7 +17,14 @@ form {
 	font-size: 20px;
 }
 
-input[type=submit] {
+#submitButton[type=submit] {
 	margin-top: 20px;
 	font-size: 20px;
+}
+
+#retakeButton[type=submit] {
+	margin-top: 20px;
+	font-size: 20px;
+	position: relative;
+	top: 146px;
 }

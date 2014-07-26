@@ -53,49 +53,22 @@ function makeRadioButtons() {
 		var br = document.createElement("br");
 		// document.getElementById("form").appendChild(br);				
 		document.getElementById("form").appendChild(br);
-		// add click event to radio buttons
-		// (function(radioArray, i) {
-		// 	radioArray[i].addEventListener("click", function() {
-		// 		if(radioArray[i].value === quizArray[current].correctAnswer) {
-		// 			console.log("Correct " + radioArray[i].value);
-		// 			total++;
-		// 			console.log("TOTAL " + total);							
-		// 		}
-		// 		else {
-		// 			console.log("Incorrect " + radioArray[i].value);
-		// 		}
-		// 	});		
-		// })(radioArray, i);
 	};
 };
 
-// if (document.getElementById('r1').checked) {
-//   rate_value = document.getElementById('r1').value;
-// }
-
 function sumTotal() {
-	for(i=0; i<radioArray.length; i++) {
-		if(radioArray[i].checked) {
-			if(radioArray[i].value === quizArray[current].correctAnswer) {
-				console.log(radioArray[i].value);
+	for(j=0; j<radioArray.length; j++) {
+		if(radioArray[j].checked) {
+			if(radioArray[j].value === quizArray[current].correctAnswer) {
+				console.log(radioArray[j].value);
 				total++;
+				console.log("got here");
 			}
 			else {
 				console.log("Wrong");
 			}
 		}
 	}; 
-	// for(i=0; i<radioArray.length; i++) {
-	// 	if(radioArray[i].checked === quizArray[current].correctAnswer) {
-
-	// 		console.log("Correct " + radioArray[i].value);
-	// 		total++;
-	// 		console.log("TOTAL " + total);							
-	// 	}
-	// 	else {
-	// 		console.log("Incorrect " + radioArray[i].value);
-	// 	}
-	// };
 };
 
 function makeSubmitButton() {
@@ -103,6 +76,7 @@ function makeSubmitButton() {
 	var submitButton = document.createElement("input");
 	submitButton.setAttribute("type", "submit");
 	submitButton.setAttribute("value", "Next Question");
+	submitButton.setAttribute("id", "submitButton");
 	document.getElementById("quizContainer").appendChild(submitButton);
 	// add click event to submit button
 	submitButton.addEventListener("click", function() {
@@ -115,6 +89,7 @@ function makeSubmitButton() {
 			makeRadioButtons();
 		}
 		else {
+			sumTotal();
 			finishedQuiz();
 		}
 	})

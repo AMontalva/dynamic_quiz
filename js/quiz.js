@@ -89,18 +89,32 @@ Quiz.prototype.makeSubmitButton = function() {
 // click submit button event
 Quiz.prototype.submitEventListener = function() {
 	var submit = document.getElementById("submitButton");
+	var radioTotal = 0;
 	submit.addEventListener("click", function() {
-		if(this.current < this.quizArray.length - 1) {
-			this.sumTotal();
-			var str = document.getElementById("quizQuestion").innerHTML;
-			str = this.quizArray[++this.current].question;
-			document.getElementById("quizQuestion").innerHTML = str;
-			this.removeQuizQuestion();
-			this.makeRadioButtons();
+		for(i = 0; i < this.quizArray[this.current].choices.length; i++) {
+			if(this.radioArray[i].checked) {
+				radioTotal++;
+			}
 		}
-		else {
+		console.log("Radio Total = " + radioTotal);
+		if(radioTotal > 0 && this.current < this.quizArray.length -1) {
+			if(radioTotal > 0) {
+				this.sumTotal();
+				var str = document.getElementById("quizQuestion").innerHTML;
+				str = this.quizArray[++this.current].question;
+				document.getElementById("quizQuestion").innerHTML = str;
+				this.removeQuizQuestion();
+				this.makeRadioButtons();
+				console.log("Radio Total = " + radioTotal);
+			}
+			radioTotal = 0;
+		}
+		else if(radioTotal > 0 && this.current == this.quizArray.length -1) {
 			this.sumTotal();
 			this.finishedQuiz();
+		}
+		else {
+			alert("Please select an answer.");
 		}
 	}.bind(this), false);
 };
